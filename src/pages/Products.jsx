@@ -26,6 +26,7 @@ const Products = () => {
                     <div key={index} className="bg-[#F1F1F1] shadow-md rounded-lg p-4 text-center h-[550px] ">
                         {/* Product Image */}
                         <div className="relative">
+                            <Link to={`/${product.id}`}>
                             <img
                                 src={image}
                                 alt={product.name}
@@ -33,6 +34,7 @@ const Products = () => {
                                 decoding="async"
                                 className="w-full h-[380px] object-cover rounded-lg"
                             />
+                            </Link>
                             {/* 3D Icon Placeholder */}
                             <div className="absolute top-2 right-2  p-1 rounded-full shadow">
                                 <img src={icon} alt="AR-icons" width={22} height={22} />
@@ -44,7 +46,7 @@ const Products = () => {
                             {product.colors.map((color, index) => (
                                 <div 
                                 key={index} 
-                                className={`w-8 h-8 rounded-full ${product.activeColor === color ? `bg-white border-2` : `bg-[${color}]`} flex justify-center items-center `}                                 
+                                className={`w-8 h-8 rounded-full ${product.activeColor === color ? `bg-[#F1F1F1] border-2` : `bg-[${color}]`} flex justify-center items-center `}                                 
                                 onClick={() => handleColorChange(product.id, color)}
                                 style={{borderColor: `${product.activeColor}`}}
                                 >
@@ -68,7 +70,7 @@ const Products = () => {
                             {/* Navigation Button */}
                             <div className="flex justify-end mt-3">
                                 <Link to={`/${product.id}`}>
-                                    <span className="bg-white w-[60px] h-[60px] rounded-full hover:bg-gray-300 flex justify-center items-center">
+                                    <span className="bg-white w-[40px] h-[40px] rounded-full flex justify-center items-center transition-shadow duration-200 shadow-sm hover:shadow-md text-[#999999]">
                                         <GoArrowUpRight className="text-2xl" />
                                     </span>
                                 </Link>

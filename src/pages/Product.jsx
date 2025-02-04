@@ -4,8 +4,12 @@ import { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+
 // import image from "../assets/image.jpeg";
 import icon from "../assets/icon.jpeg";
+import arrow from "../assets/arrow.jpeg";
 import Chair from "../components/Chair";
 import mod1 from "../assets/Arco.glb";
 import mod2 from "../assets/Arco2.glb";
@@ -22,10 +26,10 @@ const Product = () => {
   const details = [
     { title: "Single", options: ["Single"] },
     { title: "REC", options: ["REC", "RLS", "LLS"] },
-    { title: "Length", options: [ "Length"] },
+    { title: "Length", options: ["Length"] },
     { title: "Width", options: ["Width"] },
     { title: "Height / Depth", options: ["Height / Depth"] },
-    { title: "Finished by", options: ["Finished by"]}
+    { title: "Finished by", options: ["Finished by"] }
   ];
   const [openDetail, setOpenDetail] = useState(null);
 
@@ -46,17 +50,25 @@ const Product = () => {
       default:
         setPath(mod1);
     }
-  }, [index]); 
+  }, [index]);
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-white p-6">
+    <div className="flex-col justify-center items-center min-h-screen bg-white p-6">
+      <div className="w-full mb-4">
+        <Link to="/">
+          <span className="bg-white w-[40px] h-[40px] rounded-full flex justify-center items-center transition-shadow duration-200 shadow-sm hover:shadow-md text-[#999999]">
+            <MdKeyboardArrowLeft className="text-3xl" />
+            {/* <img src={arrow} alt="arrow-icon" /> */}
+          </span> 
+        </Link>
+      </div>
       <div className="w-full max-w-8xl p-6 bg-[#F1F1F1] shadow-lg rounded-xl flex flex-col md:flex-row">
         <div className="w-full md:w-1/2 flex justify-center items-center relative">
-        <div className="bg-white h-96 w-full flex items-center justify-center rounded-2xl">
+          <div className="bg-white h-96 w-full flex items-center justify-center rounded-2xl">
             <Canvas camera={{ position: [0, 2, 5] }}>
               <ambientLight intensity={0.5} />
               <directionalLight position={[5, 5, 5]} />
-              <Chair color={selectedColor} path={path || mod1}  />
+              <Chair color={selectedColor} path={path || mod1} />
               <OrbitControls enableZoom={true} />
             </Canvas>
           </div>
@@ -67,11 +79,11 @@ const Product = () => {
           <p className="text-gray-600">Arm Chair</p>
           <div className="flex items-center gap-2 my-4">
             {colors.map((color, index) => (
-              <div key={index} className={`w-8 h-8 rounded-full ${selectedColor === color ? `bg-[#F1F1F1] border-2` : `bg-[${color}]`} flex justify-center items-center `} style={{borderColor: `${selectedColor === color ? selectedColor : "none"}`}}>
+              <div key={index} className={`w-8 h-8 rounded-full ${selectedColor === color ? `bg-[#F1F1F1] border-2` : `bg-[${color}]`} flex justify-center items-center `} style={{ borderColor: `${selectedColor === color ? selectedColor : "none"}` }}>
                 <span
                   className={`w-6 h-6 rounded-full cursor-pointer`}
                   style={{ backgroundColor: color }}
-                  onClick={() => {setSelectedColor(color); setIndex(index);}}
+                  onClick={() => { setSelectedColor(color); setIndex(index); }}
                 ></span>
               </div>
             ))}
@@ -87,20 +99,20 @@ const Product = () => {
                   <ChevronDown className={`w-5 h-5 text-gray-600 transform transition-transform ${openDetail === index ? "rotate-180" : ""}`} />
                 </div>
                 <div className="relative">
-                <AnimatePresence>
-                  {openDetail === index && detail.options.length > 0 && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="z-50 absolute left-0 top-0 bg-white rounded-lg overflow-hidden mt-2 p-5 w-full"
-                    >
-                      {detail.options.map((option, idx) => (
-                        <div key={idx} className={`p-[10px] ${idx === 0 ? "bg-[#F1F1F1] font-[600px] rounded-[10px]" : "text-gray-600"}`}>{option} </div>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                  <AnimatePresence>
+                    {openDetail === index && detail.options.length > 0 && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="z-50 absolute left-0 top-0 bg-white rounded-lg overflow-hidden mt-2 p-5 w-full"
+                      >
+                        {detail.options.map((option, idx) => (
+                          <div key={idx} className={`p-[10px] ${idx === 0 ? "bg-[#F1F1F1] font-[600px] rounded-[10px]" : "text-gray-600"}`}>{option} </div>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
             ))}

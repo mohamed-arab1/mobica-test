@@ -50,8 +50,8 @@ const Product = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-white p-6">
-      <div className="w-full max-w-8xl p-6 bg-[#F1F1F1] shadow-lg rounded-xl flex">
-        <div className="w-1/2 flex justify-center items-center relative">
+      <div className="w-full max-w-8xl p-6 bg-[#F1F1F1] shadow-lg rounded-xl flex flex-col md:flex-row">
+        <div className="w-full md:w-1/2 flex justify-center items-center relative">
         <div className="bg-white h-96 w-full flex items-center justify-center rounded-2xl">
             <Canvas camera={{ position: [0, 2, 5] }}>
               <ambientLight intensity={0.5} />
@@ -62,7 +62,7 @@ const Product = () => {
           </div>
           <img src={icon} alt="AR-icons" className=" absolute bottom-[15%] right-[2%] " width={36} height={36} />
         </div>
-        <div className="w-1/2 p-6">
+        <div className="w-full md:w-1/2 p-6">
           <h2 className="text-2xl font-semibold">Furniture</h2>
           <p className="text-gray-600">Arm Chair</p>
           <div className="flex items-center gap-2 my-4">

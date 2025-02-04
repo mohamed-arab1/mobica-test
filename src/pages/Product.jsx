@@ -1,27 +1,52 @@
 /* eslint-disable react/no-unknown-property */
 import { OrbitControls } from "@react-three/drei";
-import { useState } from "react";
-import mod1 from "../assets/Arco.glb"
+import { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 // import image from "../assets/image.jpeg";
 import icon from "../assets/icon.jpeg";
 import Chair from "../components/Chair";
+import mod1 from "../assets/Arco.glb";
+import mod2 from "../assets/Arco2.glb";
+import mod3 from "../assets/Arco3.glb";
+import mod4 from "../assets/Arco4.glb";
+import mod5 from "../assets/Arco5.glb";
+import mod6 from "../assets/Arco6.glb";
 
 const Product = () => {
   const [selectedColor, setSelectedColor] = useState("#c4a98c");
+  const [index, setIndex] = useState(1);
+  const [path, setPath] = useState(1);
   const colors = ["#c4a98c", "#7d7d7d", "#d4c455", "#5b5ea6", "#6da34d"];
-  console.log(selectedColor)
   const details = [
     { title: "Single", options: ["Single"] },
     { title: "REC", options: ["REC", "RLS", "LLS"] },
     { title: "Length", options: [ "Length"] },
     { title: "Width", options: ["Width"] },
     { title: "Height / Depth", options: ["Height / Depth"] },
-    { title: "Finished by", options: ["Finished by"] }
+    { title: "Finished by", options: ["Finished by"]}
   ];
   const [openDetail, setOpenDetail] = useState(null);
+
+  useEffect(() => {
+    switch (index) {
+      case 1:
+        setPath(mod1);
+        break;
+      case 2:
+        setPath(mod2);
+        break;
+      case 3:
+        setPath(mod3);
+        break;
+      case 4:
+        setPath(mod4);
+        break;
+      default:
+        setPath(mod1);
+    }
+  }, [index]); 
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-white p-6">
@@ -31,7 +56,7 @@ const Product = () => {
             <Canvas camera={{ position: [0, 2, 5] }}>
               <ambientLight intensity={0.5} />
               <directionalLight position={[5, 5, 5]} />
-              <Chair color={selectedColor} path={mod1}  />
+              <Chair color={selectedColor} path={path || mod1}  />
               <OrbitControls enableZoom={true} />
             </Canvas>
           </div>
@@ -44,9 +69,9 @@ const Product = () => {
             {colors.map((color, index) => (
               <div key={index} className={`w-8 h-8 rounded-full ${selectedColor === color ? `bg-[#F1F1F1] border-2` : `bg-[${color}]`} flex justify-center items-center `} style={{borderColor: `${selectedColor === color ? selectedColor : "none"}`}}>
                 <span
-                  className={`w-6 h-6 rounded-full`}
+                  className={`w-6 h-6 rounded-full cursor-pointer`}
                   style={{ backgroundColor: color }}
-                  onClick={() => setSelectedColor(color)}
+                  onClick={() => {setSelectedColor(color); setIndex(index);}}
                 ></span>
               </div>
             ))}

@@ -14,7 +14,6 @@ const Products = () => {
             product.id === productId ? { ...product, activeColor: newColor } : product
         );
         setProducts(updateProducts);
-        console.log(productId, newColor, products)
     };
     return (
         <main className="min-h-screen flex flex-col">
@@ -36,7 +35,7 @@ const Products = () => {
                             />
                             </Link>
                             {/* 3D Icon Placeholder */}
-                            <div className="absolute top-2 right-2  p-1 rounded-full shadow">
+                            <div className="absolute top-2 right-2  p-1">
                                 <img src={icon} alt="AR-icons" width={22} height={22} />
                             </div>
                         </div>

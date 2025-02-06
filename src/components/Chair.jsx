@@ -10,12 +10,12 @@ const Chair = ({ color, size = 1, path}) => {
     const { scene } = useGLTF(path);
 
     scene.traverse((child) => {
-      if (child.isMesh) {
-        child.material.color.set(color);
-      }
+      // if (child.isMesh) {
+      //   child.material.color.set(color);
+      // }
     });
 
-    return <primitive object={scene} scale={size} />;
+    return <primitive object={scene} scale={2} />;
   // } catch (error) {
   //   console.error("Error loading model:", error);
   //   return <mesh>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 import { Environment, OrbitControls, SoftShadows, } from "@react-three/drei";
 import { EffectComposer, Bloom, SSAO } from "@react-three/postprocessing";
@@ -106,7 +107,7 @@ const Product = () => {
         </Link>
       </div>
       <ProductSection sectionRef={sectionRef} scrollToSection={scrollToSection} />
-      <div className="w-full max-w-8xl px-40 py-12 bg-[#F1F1F1] shadow-lg flex flex-col md:flex-row min-h-screen" id="product" ref={sectionRef}>
+      <div className="w-full max-w-8xl px-6 md:px-40 py-12 bg-[#F1F1F1] shadow-lg flex flex-col md:flex-row min-h-screen" id="product" ref={sectionRef}>
         <div className="w-full md:w-2/3 flex justify-center items-center relative">
           <div className="bg-white border border-gray-200  h-full w-full flex items-center justify-center">
             <Canvas gl={{ antialias: true }} shadows>
